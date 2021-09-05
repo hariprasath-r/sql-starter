@@ -76,3 +76,51 @@ SELECT
 	c.first_name
 FROM orders o, customers c
 WHERE o.customer_id = c.customer_id; -- ignoring this where clause will result in CROSS JOIN. Hence avoid implicit join statements
+
+-- LEFT OUTER JOIN
+SELECT
+	c.customer_id,
+	c.first_name,
+	o.order_id,
+	o.order_date
+FROM customers c
+LEFT OUTER JOIN orders o
+	ON c.customer_id = o.customer_id;
+	
+-- RIGHT OUTER JOIN
+SELECT 
+	c.customer_id,
+	c.first_name,
+	o.order_id,
+	o.order_date
+FROM orders o
+RIGHT JOIN customers c
+	ON o.customer_id = c.customer_id;
+	
+-- Get all products and their order id
+SELECT
+	p.product_id,
+	p.name,
+	oi.order_id,
+	oi.quantity
+FROM products p
+LEFT JOIN order_items oi
+	ON p.product_id = oi.product_id;
+	
+-- OUTER JOIN Multiple Tables
+SELECT
+	o.order_id,
+	o.order_date,
+	c.first_name,
+	os.name AS order_status
+--	s.name AS shipper
+FROM orders o
+JOIN customers c
+	ON o.customer_id = c.customer_id
+LEFT JOIN order_statuses os
+	ON o.order_id = os.order_status_id
+LEFT JOIN shippers s
+	ON o.shipper_id = s.shipper_id;
+
+
+
