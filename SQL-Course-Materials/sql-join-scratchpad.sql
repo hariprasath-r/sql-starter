@@ -50,3 +50,29 @@ JOIN invoices i
 	ON p.invoice_id = i.invoice_id
 JOIN payment_methods pm
 	ON p.payment_method = pm.payment_method_id
+	
+-- Composite Join Conditions
+SELECT 
+	oi.order_id,
+	oi.product_id,
+	oi.quantity,
+	oi.unit_price,
+	oin.note
+FROM order_items oi
+JOIN order_item_notes oin
+	ON oi.order_id = oin.order_Id
+	AND oi.product_id = oin.product_id
+	
+-- Implicit Join Syntax
+SELECT
+	o.order_id,
+	c.first_name
+FROM orders o
+JOIN customers c
+	ON o.customer_id = c.customer_id;
+
+SELECT 
+	o.order_id,
+	c.first_name
+FROM orders o, customers c
+WHERE o.customer_id = c.customer_id; -- ignoring this where clause will result in CROSS JOIN. Hence avoid implicit join statements
