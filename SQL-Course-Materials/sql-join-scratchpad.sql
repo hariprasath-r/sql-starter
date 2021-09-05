@@ -125,7 +125,7 @@ LEFT JOIN shippers s
 
 -- SELF OUTER JOIN
 USE sql_hr;
-SHOW TABLES;
+
 SELECT
 	e.employee_id,
 	e.first_name,
@@ -135,8 +135,38 @@ LEFT JOIN employees m
 	ON e.reports_to = m.employee_id;
 
 
+-- USING clause example
+USE sql_store;
 
+SELECT
+	c.first_name,
+	o.order_date,
+	s.name AS shipper
+FROM customers c
+LEFT JOIN orders o
+--	ON c.customer_id = o.customer_id
+	USING (customer_id)
+LEFT JOIN shippers s
+	USING (shipper_id);
 
+SELECT *
+FROM order_items oi
+JOIN order_item_notes oin
+--	ON oi.order_id = oin.order_Id AND oi.product_id = oin.product_id
+	USING (order_id, product_id);
+
+USE sql_invoicing;
+SELECT
+	c.name AS client_name,
+	p.date AS payment_date,
+	p.amount,
+	pm.name AS payment_type
+FROM payments p
+JOIN clients c
+--	ON p.client_id = c.client_id
+	USING (client_id)
+JOIN payment_methods pm
+	ON p.payment_method = pm.payment_method_id;
 
 
 
