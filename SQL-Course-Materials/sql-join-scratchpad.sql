@@ -155,7 +155,9 @@ JOIN order_item_notes oin
 --	ON oi.order_id = oin.order_Id AND oi.product_id = oin.product_id
 	USING (order_id, product_id);
 
+
 USE sql_invoicing;
+
 SELECT
 	c.name AS client_name,
 	p.date AS payment_date,
@@ -169,4 +171,24 @@ JOIN payment_methods pm
 	ON p.payment_method = pm.payment_method_id;
 
 
+-- NATURAL JOIN
+USE sql_store;
 
+SELECT 
+	c.first_name AS customer,
+	o.order_date
+FROM customers c
+NATURAL JOIN orders o;
+
+-- CROSS JOIN (Explicit)
+SELECT 
+	p.name AS product_name,
+	sh.name AS shipper_name
+FROM products p
+CROSS JOIN shippers sh;
+
+-- CROSS JOIN (Implicit)
+SELECT
+	p.name AS product_name,
+	sh.name AS shipper_name
+FROM products p, shippers sh;
