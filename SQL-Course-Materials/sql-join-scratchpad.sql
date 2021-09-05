@@ -123,4 +123,20 @@ LEFT JOIN shippers s
 	ON o.shipper_id = s.shipper_id;
 
 
+-- SELF OUTER JOIN
+USE sql_hr;
+SHOW TABLES;
+SELECT
+	e.employee_id,
+	e.first_name,
+	m.first_name AS manager_name
+FROM employees e
+LEFT JOIN employees m
+	ON e.reports_to = m.employee_id;
+
+
+
+
+
+
 
