@@ -1,0 +1,61 @@
+1. Introduction
+2. ER - Entity Relationship Model
+
+    Terms:
+    ------
+      1. Entity -> Customer
+
+      2. Attributes -> Details of customer like name, age, etc..
+
+        Types of Attributes
+        --------------------
+          1. Simple - atomic value which cannot be divided
+          
+          2. Composite - a value that can be divided into sub parts
+          
+          3. Derived - a value that is not stored in the db, but Derived from other Attributes
+              e.g. age is Derived from DOB and current date
+              e.g. if pincode is stored, then we can derive city & state information
+          
+          4. Multivalued - an Attribute which can have more than one value
+              e.g. mobile number -> a person can have more than one
+
+      3. Relationships -> linking multiple entities together
+
+      4. Cardinality
+          Defines the numerical Attributes of the relationship between entities or entity sets
+
+          Types of Cardinality:
+          ---------------------
+          1. One to One
+          2. One to many
+          3. Many to One
+          4. Many to Many
+ 
+    ER Diagram
+    -----------
+      1. Rectangles - entity
+      2. Ellipses - represents Attributes
+      3. Diamonds - represents relationship Types
+      4. Lines - links atttributes to entity type and entity types with other relationship types
+      5. Primary Key - attributes that are underlined
+      5. Doube Ellipses - represents Multivalued attributes
+
+    Relationship Cardinality
+    ------------------------
+      Mandatory one
+      Mandatory many
+      Optional one
+      Optional many
+
+    Steps for DB Design:
+    --------------------
+      -> Entity Identification 
+      -> Relationship Identification 
+      -> Cardinality Identification 
+      -> Identidy attributes 
+      -> Create ERD
+
+3. Functional Dependencies
+4. Normalization
+5. Indexing
